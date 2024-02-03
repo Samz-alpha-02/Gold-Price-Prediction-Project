@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gold Price Prediction</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .prediction {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    form {
+      display: grid;
+      gap: 10px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .result-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="prediction">
+    <h1>Gold Price Prediction</h1>
+    <form action="{{ url_for('predict_price')}}" method="post">
+      <label for="SPX">S&P 500 Index (SPX):</label>
+      <input type="text" name="SPX" placeholder="Enter SPX" required="required" />
+
+      <label for="GLD">Gold ETF (GLD):</label>
+      <input type="text" name="GLD" placeholder="Enter GLD" required="required" />
+
+      <label for="USO">United States Oil Fund (USO):</label>
+      <input type="text" name="USO" placeholder="Enter USO" required="required" />
+
+      <label for="rolling_mean">20-day Mean Price:</label>
+      <input type="text" name="rolling_mean" placeholder="Enter 20-day Mean Price" />
+
+      <button type="submit">Predict</button>
+    </form>
+
+    <div class="result-container">
+      <div class="result">
+        {{result}}
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
